@@ -38,8 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'visitor',
-    'mongonaut',
+    'visitor'
+    'monogonaut'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,6 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +105,7 @@ USE_TZ = True
 #AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MONGONAUT_JQUERY = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
 MONGONAUT_TWITTER_BOOTSTRAP = "http://twitter.github.com/bootstrap/assets/css/bootstrap.css"
 MONGONAUT_TWITTER_BOOTSTRAP_ALERT = "http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"
