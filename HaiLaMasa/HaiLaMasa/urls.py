@@ -18,6 +18,7 @@ from django.contrib import admin
 from visitor import views as visitor_views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', visitor_views.hello)
+    #url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', visitor_views.hello),
+    url(r'^mongonaut/', include('mongonaut.urls')),
 ]
