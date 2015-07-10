@@ -31,7 +31,7 @@ class Restaurant(Document):
     gallery = ListField(StringField(max_length=30))
     contact = EmbeddedDocumentField(Contact)
     additional_info = StringField()
-    daily_menu = ListField(EmbeddedDocumentField(DailyMenu))
+    daily_menu = EmbeddedDocumentField(DailyMenu)
     owner = ReferenceField(MongoUser)
 
 # Create your models here.
