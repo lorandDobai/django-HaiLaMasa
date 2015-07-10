@@ -38,8 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'visitor'
     'monogonaut'
+=======
+    'mongoengine.django.mongo_auth',
+    'visitor',
+    'mongonaut',
+>>>>>>> origin/master
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,8 +108,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-#AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MONGONAUT_JQUERY = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
