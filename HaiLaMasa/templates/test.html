@@ -6,7 +6,7 @@ src="http://maps.googleapis.com/maps/api/js">
 </script>
 
 <script>
-var myCenter=new google.maps.LatLng(45.663735,25.624621);
+var myCenter=new google.maps.LatLng(45.6593638,25.6201972);
 
 function initialize()
 {
@@ -25,7 +25,6 @@ var marker = new google.maps.Marker({
 
 marker.setMap(map);
 
-// Zoom to 9 when clicking on marker
 google.maps.event.addListener(marker,'click',function() {
   alert(marker.title);
   });

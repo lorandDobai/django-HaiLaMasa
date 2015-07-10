@@ -38,14 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'visitor'
-    'monogonaut'
-=======
+
     'mongoengine.django.mongo_auth',
     'visitor',
     'mongonaut',
->>>>>>> origin/master
+
 )
 
 MIDDLEWARE_CLASSES = (
