@@ -6,9 +6,4 @@ from datetime import date
 
 
 def hello(request):
-    rest = Restaurant.objects.create(
-        name="Eli",
-
-    )
-    rest.save()
-    return HttpResponse("Hello Mancare");
+    return render(request, 'test.html' )
