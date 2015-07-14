@@ -31,11 +31,15 @@ body {
   z-index: 2;
 }
 #id_password {
+  width:220px;
+  margin: 0 auto;
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 #id_username{
+  width:220px;
+  margin: 0 auto;
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
