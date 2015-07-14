@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from visitor import views as visitor_views
+from organizer import views as organizer_views
 from django.contrib import admin
 
 
 urlpatterns = [
-    #url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', visitor_views.hello),
-
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', visitor_views.hello,name = 'home'),
+    url(r'^login$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^login/auth$',organizer_views.login_auth)
 ]

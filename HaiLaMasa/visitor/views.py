@@ -6,4 +6,6 @@ from datetime import date
 
 
 def hello(request):
+
+
     return render(request, 'home.html')
