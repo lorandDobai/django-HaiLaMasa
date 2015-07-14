@@ -1,37 +1,34 @@
 from django.db import models
-from mongoengine import *
-from mongoengine.django.auth import User as MongoUser
+from django.contrib.auth.models import User
 # Create your models here.
-class Address(EmbeddedDocument):
-    city = StringField(max_length=50, required=True)
-    street = StringField(max_length=50, required=True)
-    building = StringField()
-    coord = GeoPointField(required=True)
 
+class Owner(User):
+    phone = models.CharField(max_length=200)
 
-class Contact(EmbeddedDocument):
-    phone = StringField(max_length=15)
-    mail = EmailField()
-    website = URLField()
+class Restaurant(models.Model):
+    name = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    user = models.ForeignKey(User)
 
-class Menu(EmbeddedDocument):
-    description = StringField()
-    pret = DecimalField()
-    picture = StringField()
+class Address(models.Model):
+    street = models.CharField(max_length=200)
+    building = models.CharField(max_length=200)
+    restaurant = models.ForeignKey(Restaurant)
 
+class Contact(models.Model):
+    phone = models.CharField(max_length=200)
+    mail = models.CharField(max_length=200)
+    website = models.CharField(max_length=200)
+    restaurant = models.ForeignKey(Restaurant)
 
-class DailyMenu(EmbeddedDocument):
-    date = DateTimeField()
-    menus = ListField(EmbeddedDocumentField(Menu))
+class Menu(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    picture = models.CharField(max_length=200)
+    date = models.DateField()
+    price = models.DecimalField(max_digits=5,decimal_places=2)
+    restaurant = models.ForeignKey(Restaurant)
 
-
-class Restaurant(Document):
-    name = StringField(required=True)
-    address = EmbeddedDocumentField(Address)
-    gallery = ListField(StringField(max_length=30))
-    contact = EmbeddedDocumentField(Contact)
-    additional_info = StringField()
-    daily_menu = EmbeddedDocumentField(DailyMenu)
-    owner = ReferenceField(MongoUser)
-
-# Create your models here.
+class Gallery(models.Model):
+    picture = models.CharField(max_length=200)
+    restaurant = models.ForeignKey(Restaurant)

@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from mongoengine import connect
-connect('hailamasa', host='localhost', port=27017)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,10 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'mongoengine.django.mongo_auth',
     'visitor',
-    'mongonaut',
 
 )
 
@@ -82,9 +78,9 @@ WSGI_APPLICATION = 'HaiLaMasa.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'database.db'),
     }
 }
 
@@ -106,9 +102,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MONGONAUT_JQUERY = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-MONGONAUT_TWITTER_BOOTSTRAP = "http://twitter.github.com/bootstrap/assets/css/bootstrap.css"
-MONGONAUT_TWITTER_BOOTSTRAP_ALERT = "http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)

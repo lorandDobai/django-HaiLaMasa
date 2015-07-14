@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %}
+
+{% block content %}
 <script
-src="http://maps.googleapis.com/maps/api/js">
+        src="http://maps.googleapis.com/maps/api/js">
 </script>
 
 <script>
@@ -26,15 +26,18 @@ var marker = new google.maps.Marker({
 marker.setMap(map);
 
 google.maps.event.addListener(marker,'click',function() {
-  alert(marker.title);
+  //alert(marker.title);
+  var str1 = "localhost:8000/base_oras/";
+  var str2 = marker.title;
+  var res = str1.concat(str2);
+  window.location = res;
   });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
-</head>
 
 <body>
 <div id="googleMap" style="width:600px;height:480px;"></div>
-
 </body>
-</html>
+{% endblock content %}
