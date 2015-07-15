@@ -8,17 +8,18 @@ class Owner(User):
 class Restaurant(models.Model):
     name = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
 
 class Address(models.Model):
-    street = models.CharField(max_length=200)
-    building = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    latitude = models.DecimalField(max_digits=13,decimal_places=10,default=0.0)
+    longitude = models.DecimalField(max_digits=13,decimal_places=10,default=0.0)
     restaurant = models.ForeignKey(Restaurant)
 
 class Contact(models.Model):
-    phone = models.CharField(max_length=200)
-    mail = models.CharField(max_length=200)
-    website = models.CharField(max_length=200)
+    phone = models.CharField(max_length=200,blank=True)
+    mail = models.CharField(max_length=200,blank=True)
+    website = models.CharField(max_length=200,blank=True)
     restaurant = models.ForeignKey(Restaurant)
 
 class Menu(models.Model):
