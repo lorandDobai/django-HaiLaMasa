@@ -88,8 +88,5 @@ def populate_db(result_dict):
         gallery.save()
 
 
-
-
-
 if __name__ == '__main__':
     pass

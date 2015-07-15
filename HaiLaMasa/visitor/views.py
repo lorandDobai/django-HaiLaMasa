@@ -9,3 +9,6 @@ def hello(request):
 
 
     return render(request, 'home.html')
+
+def city_view(request,city=""):
+    return HttpResponse(city)
