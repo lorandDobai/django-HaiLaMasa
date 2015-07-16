@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block content %}
-<head>
+
+{% block head %}
     <script src="http://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript" src="{% static 'custom/js/map' %}"></script>
-</head>
-<body>
-<center>
-    <div id="googleMap" style="width:600px;height:480px;"></div>
-</center>
-</body>
+    <script type="text/javascript" src="{% static 'custom/js/map.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'custom/css/home.css' %}"/>
+{% endblock head %}
+
+{% block content %}
+
+
+        <div id="googleMap"></div>
+
+
 {% endblock content %}
+
 {% block footer %}
 {% if user.is_authenticated == False %}
 <div class="well">

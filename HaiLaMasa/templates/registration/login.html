@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-  {% block styling %}
+  {% block head %}
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'custom/css/login.css' %}">
-    {% endblock styling %}
+    {% endblock head %}
 {% block content %}
 <div class="container">
     <form method="post" action="/login/auth" class="form-signin">

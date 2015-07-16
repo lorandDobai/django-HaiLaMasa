@@ -1,0 +1,8 @@
+body, html,#googleMap{
+    width: 100%;
+    height: 100%;
+}
+#googleMap{
+    height:550px;
+
+}

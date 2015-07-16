@@ -4,8 +4,8 @@ var myCenter=new google.maps.LatLng(45.6593638,25.6201972);
 function initialize()
 {
 var mapProp = {
-  center: myCenter,
-  zoom:6,
+  center:new google.maps.LatLng(45.8369377,24.9987621),
+  zoom:7,
   mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
