@@ -7,7 +7,7 @@ from datetime import date
 # Create your views here.
 
 def hello(request):
-    return render(request, 'home.html')
+    return render(request, 'visitor/home.html')
 
 def city_view(request,city=""):
     menus = Menu.objects.filter(date__exact=datetime.date.today(),restaurant__city=city.lower().title())
