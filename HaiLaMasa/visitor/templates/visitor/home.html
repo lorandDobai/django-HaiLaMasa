@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="{% static 'custom/js/map.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'custom/css/home.css' %}"/>
+{% endblock head %}
+
+{% block content %}
+
+
+        <div id="googleMap"></div>
+
+
+{% endblock content %}
+
+{% block footer %}
+{% if user.is_authenticated == False %}
+<div class="well">
+    <a href="http://localhost:8000/login">
+        Log in as restaurant manager
+    </a>
+</div>
+{% endif %}
+{% endblock footer %}
