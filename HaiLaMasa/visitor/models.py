@@ -31,6 +31,8 @@ class Menu(models.Model):
     date = models.DateField()
     price = models.DecimalField(max_digits=5,decimal_places=2)
     restaurant = models.ForeignKey(Restaurant)
+    def __str__(self):
+        return self.name
 
 class Gallery(models.Model):
     picture = models.CharField(max_length=200)
