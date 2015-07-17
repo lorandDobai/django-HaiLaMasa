@@ -1,19 +1,18 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-  {% block head %}
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'custom/css/login.css' %}">
-    {% endblock head %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'custom/css/login.css' %}">
+{% endblock head %}
 {% block content %}
 <div class="container">
     <form method="post" action="/login/auth" class="form-signin">
-    {% csrf_token %}
+        {% csrf_token %}
         <h2 class="form-signin-heading">Please sign in</h2>
         <ul class="contactList">
 
             {{ form.username }}
             {{ form.password }}
-         </ul>
+        </ul>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <input type="hidden" name="next" value="{{ next }}"/>
     </form>

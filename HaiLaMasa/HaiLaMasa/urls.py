@@ -25,5 +25,9 @@ urlpatterns = [
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
     url(r'^login/auth$',organizer_views.login_auth),
     url(r'^oras/(?P<city>[a-zA-Z]+)?',visitor_views.city_view),
-    url(r'^dashboard?',organizer_views.resto_selection, name='resto-list')
+
+    url(r'^dashboard?',organizer_views.resto_selection, name='resto-list'),
+
+    url(r'^oras/(?P<city>[a-zA-Z]+)?',visitor_views.city_view),
+
 ]

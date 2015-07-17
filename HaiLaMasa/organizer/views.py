@@ -18,6 +18,7 @@ def login_auth(request):
         return HttpResponseRedirect(reverse_lazy('home'))
     else:
         return HttpResponse("Login Failed")
+
 # Create your views here.
 
 @login_required
