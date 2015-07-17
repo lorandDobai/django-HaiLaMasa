@@ -14,3 +14,4 @@ def city_view(request,city=""):
     context = Context({"menus": list(menus)})
     return render(request, "visitor/base_oras.html", context)
 
+

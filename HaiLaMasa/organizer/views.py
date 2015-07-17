@@ -26,3 +26,9 @@ def resto_selection(request):
     my_restaurants = Restaurant.objects.filter(user = request.user)
     context = Context({"restos": list(my_restaurants)})
     return render(request, "organizer/dashboard_base.html", context)
+
+@login_required
+def resto_edit(request, pk=None):
+    resto = Restaurant.objects.get(pk = pk)
+    context = Context({"resto":resto})
+    return render(request,"organizer/restaurant_edit.html",context)
