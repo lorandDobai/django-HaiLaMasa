@@ -18,7 +18,7 @@
             <nav>
                 {% if user.is_authenticated %}
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation"><p class="navbar-text">Manager</p></li>
+                    <li role="presentation"><p class="navbar-text">{{request.user.username}}</p></li>
                     <li role="presentation">
                         <a href="http://localhost:8000/dashboard" class="btn btn-default navbar-btn">Dashboard</a>
                     </li>
