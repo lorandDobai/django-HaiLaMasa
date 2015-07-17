@@ -28,9 +28,8 @@ urlpatterns = [
 
     url(r'^dashboard/$',organizer_views.resto_selection, name='resto-list'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?$', organizer_views.resto_edit, name='resto-edit'),
-
-
-
+    url(r'^dashboard/restaurant/validate$',organizer_views.resto_validate,name='resto-valid'),
     url(r'^oras/(?P<city>[a-zA-Z]+)?',visitor_views.city_view),
+
 
 ]

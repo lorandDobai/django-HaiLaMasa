@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
+from django.template.context_processors import csrf
 from django.views.generic import ListView
 from visitor.models import Restaurant, Menu
 from organizer.forms import RestaurantEditForm, MenuEditForm
@@ -31,9 +32,11 @@ def resto_selection(request):
 @login_required
 def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
-    form = RestaurantEditForm(request.POST or None,instance = instance)
-    if form.is_valid():
-        form.save()
-    context = Context({"resto":instance, "form":form})
-    return render(request, 'organizer/restaurant_edit.html', context)
+    form = RestaurantEditForm( None,instance = instance)
 
+    context = Context({"resto":instance, "form":form})
+    context.update(csrf(request))
+    return render(request, 'organizer/restaurant_edit.html', context)
+@login_required
+def resto_validate(request):
+    return HttpResponse(request.POST["name"]+" validam luni aci")

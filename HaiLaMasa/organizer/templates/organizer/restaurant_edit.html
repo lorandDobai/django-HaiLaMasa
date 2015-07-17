@@ -8,8 +8,45 @@
 {% endblock head %}
 
 {% block content %}
-<h2>{{resto.name}} - {{resto.city}}</h2>
-<div class="well">
-    {{form.as_ul}}
-</div>
+<form action = "validate" method = "post">
+
+    <h2>{{resto.name}} - {{resto.city}}</h2>
+    <div class="well">
+        <h2>Date restaurant</h2>
+         <ul class="list-group">
+             <li class = "list-group-item">
+                <label for="nume_resto">Nume</label>
+                <input id = "nume_resto" type="text" name="name" maxlength="200" value = "{{form.instance.name}}">
+             </li>
+             <li class = "list-group-item">
+                <label for="nume_oras">Oras</label>
+                <input id = "nume_oras" type="text" name="city" maxlength="200" value = "{{form.instance.city}}">
+             </li>
+         </ul>
+
+    </div>
+    <div class="well">
+        <h2>Date Meniuri</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <label for="menu_name">Nume Meniu</label>
+                <input id = "menu_name" type="text" name="name_menu" maxlength="200">
+            </li>
+            <li class="list-group-item">
+                <label for="menu_description">Descriere Meniu</label>
+                <input id = "menu_description" type="text" name="description" maxlength="200" >
+            </li>
+            <li class="list-group-item">
+                <label for="menu_date">Data Meniu</label>
+                <input id = "menu_date" type="text" name="data" maxlength="200" >
+            </li>
+            <li class="list-group-item">
+                <label for="menu_price">Pret Meniu</label>
+                <input id = "menu_price" type="text" name="pret" maxlength="200" >
+            </li>
+        </ul>
+    </div>
+     {% csrf_token %}
+    <input type="submit" value="Submit">
+</form>
 {% endblock content %}
