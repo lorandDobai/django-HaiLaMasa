@@ -2,11 +2,12 @@ from datetime import timezone
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
 from django.views.generic import ListView
-from visitor.models import Restaurant
+from visitor.models import Restaurant, Menu
+from organizer.forms import RestaurantEditForm, MenuEditForm
 
 
 def login_auth(request):
@@ -29,6 +30,10 @@ def resto_selection(request):
 
 @login_required
 def resto_edit(request, pk=None):
-    resto = Restaurant.objects.get(pk = pk)
-    context = Context({"resto":resto})
-    return render(request,"organizer/restaurant_edit.html",context)
+    instance = get_object_or_404(Restaurant, id=pk)
+    form = RestaurantEditForm(request.POST or None,instance = instance)
+    if form.is_valid():
+        form.save()
+    context = Context({"resto":instance, "form":form})
+    return render(request, 'organizer/restaurant_edit.html', context)
+
