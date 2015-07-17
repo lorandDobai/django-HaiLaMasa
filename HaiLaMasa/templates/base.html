@@ -3,7 +3,9 @@
 <html>
 
 <head>
-     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/base.css' %}">
     {% block head %}
 
     {% endblock head %}
@@ -18,14 +20,16 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><p class="navbar-text">Manager</p></li>
                     <li role="presentation">
-                        <button type="button" class="btn btn-default navbar-btn">Dashboard</button>
+                        <a href="http://localhost:8000/dashboard" class="btn btn-default navbar-btn">Dashboard</a>
                     </li>
                 </ul>
                 {% endif %}
             </nav>
-            <h1>Hai La Masa!
-                <small>Nyi foame...</small>
-            </h1>
+            <a href="http://localhost:8000">
+                <h1>Hai La Masa!
+                    <small>Nyi foame...</small>
+                </h1>
+            </a>
         </div>
     </div>
     <div class="well content">
