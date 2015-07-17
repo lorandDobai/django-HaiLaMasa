@@ -1,4 +1,4 @@
-from datetime import timezone
+
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
