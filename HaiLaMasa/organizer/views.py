@@ -40,3 +40,7 @@ def resto_edit(request, pk=None):
 @login_required
 def resto_validate(request):
     return HttpResponse(request.POST["name"]+" validam luni aci")
+@login_required
+def menu_data(request,pk_rest=None,pk_menu=None):
+    result = {}
+    return HttpResponse(result)
