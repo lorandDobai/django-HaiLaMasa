@@ -11,6 +11,7 @@ $(".dropdown-menu a").click(function() {
       $("#menu_description").val(menu.description);
       $("#menu_date").val(menu.date);
       $("#menu_price").val(menu.price);
+      $("#selected_menu").val(menu_pk);
 
   });
 });

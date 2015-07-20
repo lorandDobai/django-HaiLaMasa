@@ -34,7 +34,7 @@ def resto_selection(request):
 def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
 
-    form = RestaurantEditForm( None,instance = instance)
+    form = RestaurantEditForm(None,instance = instance)
 
     context = Context({"resto":instance, "form":form, \
                        "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance))})
@@ -44,6 +44,7 @@ def resto_edit(request, pk=None):
 @login_required
 def resto_validate(request):
     return HttpResponse(request.POST["name"]+" validam luni aci")
+
 @login_required
 def menu_data(request):
     pk_menu=request.GET.get("pk_menu",-1)
