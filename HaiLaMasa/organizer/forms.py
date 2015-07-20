@@ -10,6 +10,10 @@ class RestaurantEditForm(forms.ModelForm):
     class Meta:
         model = Restaurant
         fields = ("city","name")
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 class MenuEditForm(forms.ModelForm):
     class Meta:
@@ -21,3 +25,4 @@ class MenusForm(forms.Form):
         super(MenusForm, self).__init__(*args, **kwargs)
         self.fields['my_choice_field'] = forms.ChoiceField(
             choices=Menu.objects.filter(restaurant=instance))
+

@@ -8,22 +8,19 @@
 {% endblock head %}
 
 {% block content %}
-<form action = "validate" method = "post">
+<form action = "validate" method = "post" role="form">
 
     <h2>{{resto.name}} - {{resto.city}}</h2>
     <div class="well">
         <h2>Date restaurant</h2>
-         <ul class="list-group">
-             <li class = "list-group-item">
+            <div class="form-group">
                 <label for="nume_resto">Nume</label>
-                <input id = "nume_resto" type="text" name="name" maxlength="200" value = "{{form.instance.name}}">
-             </li>
-             <li class = "list-group-item">
+                {{form.name}}
+            </div>
+            <div class="form-group">
                 <label for="nume_oras">Oras</label>
-                <input id = "nume_oras" type="text" name="city" maxlength="200" value = "{{form.instance.city}}">
-             </li>
-         </ul>
-
+                {{form.city}}
+            </div>
     </div>
     <div>
     <form method="post" action="/login/auth" class="form-signin">
