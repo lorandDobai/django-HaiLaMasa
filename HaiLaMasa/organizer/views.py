@@ -35,8 +35,9 @@ def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
 
     form = RestaurantEditForm( None,instance = instance)
-    menus_form = MenusForm(instance)
-    context = Context({"resto":instance, "form":form, "menus":Menu.objects.filter(restaurant=instance)})
+
+    context = Context({"resto":instance, "form":form, \
+                       "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance))})
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
 
@@ -44,11 +45,11 @@ def resto_edit(request, pk=None):
 def resto_validate(request):
     return HttpResponse(request.POST["name"]+" validam luni aci")
 @login_required
-def menu_data(request,pk_rest=None,pk_menu=None):
-
-    menu = Menu.objects.filter(pk=pk_menu)
-    #result = {"name": menu.name, "description":menu.description,"date":menu.date, "price":menu.price}
-    result = menu.__dict__
+def menu_data(request):
+    pk_menu=request.GET.get("pk_menu",-1)
+    menu = Menu.objects.get(pk=pk_menu)
+    result = {"name": menu.name, "description":menu.description,"date": str(menu.date), "price":str(menu.price)}
     data = json.dumps(result)
-    return HttpResponse(result)
+
+    return HttpResponse(data)
 
