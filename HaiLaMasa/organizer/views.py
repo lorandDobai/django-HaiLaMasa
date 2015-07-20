@@ -1,4 +1,5 @@
 
+import json
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
@@ -8,6 +9,7 @@ from django.template import Context
 from django.template.context_processors import csrf
 from visitor.models import Restaurant, Menu
 from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm
+
 
 
 def login_auth(request):
@@ -42,5 +44,8 @@ def resto_validate(request):
     return HttpResponse(request.POST["name"]+" validam luni aci")
 @login_required
 def menu_data(request,pk_rest=None,pk_menu=None):
-    result = {}
+    menu = Menu.objects.filter(pk=pk_menu)
+    #result = {"name": menu.name, "description":menu.description,"date":menu.date, "price":menu.price}
+    result = menu.__dict__
+    data = json.dumps(result)
     return HttpResponse(result)
