@@ -27,7 +27,7 @@ class Contact(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    picture = models.CharField(max_length=200)
+    picture = models.ImageField(upload_to='static/images')
     date = models.DateField()
     price = models.DecimalField(max_digits=5,decimal_places=2)
     restaurant = models.ForeignKey(Restaurant)
@@ -35,5 +35,7 @@ class Menu(models.Model):
         return self.name
 
 class Gallery(models.Model):
-    picture = models.CharField(max_length=200)
+    picture = models.ImageField(upload_to='static/images')
     restaurant = models.ForeignKey(Restaurant)
+    def __str__(self):
+        return self.restaurant.name
