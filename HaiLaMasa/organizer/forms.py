@@ -10,6 +10,10 @@ class RestaurantEditForm(forms.ModelForm):
     class Meta:
         model = Restaurant
         fields = ("city","name")
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 class MenuEditForm(forms.ModelForm):
     class Meta:
