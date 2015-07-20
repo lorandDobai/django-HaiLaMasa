@@ -15,3 +15,9 @@ class MenuEditForm(forms.ModelForm):
     class Meta:
         model = Menu
         fields =("description","picture","name","date","price")
+
+class MenusForm(forms.Form):
+     def __init__(self, instance, *args, **kwargs):
+        super(MenusForm, self).__init__(*args, **kwargs)
+        self.fields['my_choice_field'] = forms.ChoiceField(
+            choices=Menu.objects.filter(restaurant=instance))

@@ -8,7 +8,7 @@ from django.template import Context
 from django.template.context_processors import csrf
 from django.views.generic import ListView
 from visitor.models import Restaurant, Menu
-from organizer.forms import RestaurantEditForm, MenuEditForm
+from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm
 
 
 def login_auth(request):
@@ -33,8 +33,8 @@ def resto_selection(request):
 def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
     form = RestaurantEditForm( None,instance = instance)
-
-    context = Context({"resto":instance, "form":form})
+    menus_form = MenusForm(instance)
+    context = Context({"resto":instance, "form":form, "menus_form":menus_form})
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
 @login_required
