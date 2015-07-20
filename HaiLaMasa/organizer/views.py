@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
 from django.template.context_processors import csrf
 from visitor.models import Restaurant, Menu
-from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm
+from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm, GalleryForm
 
 
 
@@ -36,8 +36,18 @@ def resto_edit(request, pk=None):
 
     form = RestaurantEditForm(None,instance = instance)
 
+    if request.method == 'POST':
+        form_gallery = GalleryForm(request.POST, request.FILES)
+        if form_gallery.is_valid():
+            # file is saved
+            form_gallery.save()
+            return HttpResponseRedirect('')
+    else:
+        form_gallery = GalleryForm()
+
     context = Context({"resto":instance, "form":form, \
-                       "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance))})
+                       "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance)), \
+                       "form_gallery":form_gallery })
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
 
@@ -54,3 +64,16 @@ def menu_data(request):
 
     return HttpResponse(data)
 
+@login_required
+def view_gallery(request):
+    if request.method == 'POST':
+        form_gallery = GalleryForm(request.POST, request.FILES)
+        if form_gallery.is_valid():
+            # file is saved
+            form_gallery.save()
+            return HttpResponseRedirect('')
+    else:
+        form_gallery = GalleryForm()
+    c = {'form_gallery': form_gallery}
+    c.update(csrf(request))
+    return render(request, 'upload.html', {'form_gallery': form_gallery}, c)

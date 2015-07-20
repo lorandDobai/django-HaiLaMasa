@@ -1,6 +1,6 @@
 
 from django import forms
-from visitor.models import Restaurant, Menu
+from visitor.models import Restaurant, Menu, Gallery
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Nume utilizator', max_length=25)
@@ -26,3 +26,5 @@ class MenusForm(forms.Form):
         self.fields['my_choice_field'] = forms.ChoiceField(
             choices=Menu.objects.filter(restaurant=instance))
 
+class GalleryForm(forms.Form):
+    picture = forms.ImageField()

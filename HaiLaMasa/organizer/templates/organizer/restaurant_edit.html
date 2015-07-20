@@ -4,8 +4,6 @@
 {% block head %}
 
 
-
-
 {% endblock head %}
 
 
@@ -37,13 +35,13 @@
                 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 {% for menu in menus %}
-                    <li role="presentation"><a role="menuitem" tabindex="-1" data-pk="{{menu.pk}}">{{menu.name}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" data-pk="{{menu.pk}}">{{menu.name}}</a></li>
                 {% endfor %}
             </ul>
 
 
         </div>
-         <br>
+        <br>
         <ul class="list-group">
             <li class="list-group-item">
                 <label for="menu_name">Nume Meniu</label>
@@ -61,8 +59,15 @@
                 <label for="menu_price">Pret Meniu</label>
                 <input id="menu_price" class="form-control" type="text" name="pret" maxlength="200">
             </li>
-            <input type="hidden" id="selected_menu" name ="selected_menu" value=""/>
+            <input type="hidden" id="selected_menu" name="selected_menu" value=""/>
         </ul>
+        <form enctype="multipart/form-data" method="post" action="/upload">
+            {% csrf_token %}
+            <table>
+                {{form_gallery.as_table}}
+            </table>
+            <input type="submit" value="Submit" id="Save"/>
+        </form>
     </div>
     {% csrf_token %}
     <input type="submit" value="Submit">
@@ -70,8 +75,8 @@
 {% endblock content %}
 
 {% block javascript %}
-    {{ block.super }}
-   <script type="text/javascript" src="{% static 'custom/js/events.js' %}"></script>
+{{ block.super }}
+<script type="text/javascript" src="{% static 'custom/js/events.js' %}"></script>
 {% endblock javascript %}
 
 
