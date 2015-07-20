@@ -31,6 +31,7 @@ def resto_selection(request):
 @login_required
 def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
+
     form = RestaurantEditForm( None,instance = instance)
     menus_form = MenusForm(instance)
     context = Context({"resto":instance, "form":form, "menus":Menu.objects.filter(restaurant=instance)})
@@ -43,4 +44,5 @@ def resto_validate(request):
 @login_required
 def menu_data(request,pk_rest=None,pk_menu=None):
     result = {}
-    return HttpResponse(result)
+
+    return HttpResponse("tibi")
