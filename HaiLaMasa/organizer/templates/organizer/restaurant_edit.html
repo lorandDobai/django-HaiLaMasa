@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
-{% load static from staticfiles %}
+{% load staticfiles %}
 {% block head %}
 
 
+
+
 {% endblock head %}
+
 
 {% block content %}
 <form action="validate" method="post" role="form">
@@ -34,26 +37,29 @@
                 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 {% for menu in menus %}
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{menu.name}}</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" data-pk="{{menu.pk}}">{{menu.name}}</a></li>
                 {% endfor %}
             </ul>
+
+
         </div>
+         <br>
         <ul class="list-group">
             <li class="list-group-item">
                 <label for="menu_name">Nume Meniu</label>
-                <input id="menu_name" type="text" name="name_menu" maxlength="200">
+                <input class="form-control" id="menu_name" type="text" name="name_menu" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_description">Descriere Meniu</label>
-                <input id="menu_description" type="text" name="description" maxlength="200">
+                <input class="form-control" id="menu_description" type="text" name="description" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_date">Data Meniu</label>
-                <input id="menu_date" type="text" name="data" maxlength="200">
+                <input id="menu_date" class="form-control" type="text" name="data" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_price">Pret Meniu</label>
-                <input id="menu_price" type="text" name="pret" maxlength="200">
+                <input id="menu_price" class="form-control" type="text" name="pret" maxlength="200">
             </li>
         </ul>
     </div>
@@ -61,3 +67,14 @@
     <input type="submit" value="Submit">
 </form>
 {% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+   <script type="text/javascript" src="{% static 'custom/js/events.js' %}"></script>
+{% endblock javascript %}
+
+
+
+
+
+
