@@ -33,7 +33,7 @@ def resto_edit(request, pk=None):
     instance = get_object_or_404(Restaurant, id=pk)
     form = RestaurantEditForm( None,instance = instance)
     menus_form = MenusForm(instance)
-    context = Context({"resto":instance, "form":form, "menus_form":menus_form})
+    context = Context({"resto":instance, "form":form, "menus":Menu.objects.filter(restaurant=instance)})
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
 

@@ -4,50 +4,60 @@
 {% block head %}
 
 
-
 {% endblock head %}
 
 {% block content %}
-<form action = "validate" method = "post" role="form">
+<form action="validate" method="post" role="form">
 
     <h2>{{resto.name}} - {{resto.city}}</h2>
+
     <div class="well">
         <h2>Date restaurant</h2>
-            <div class="form-group">
-                <label for="nume_resto">Nume</label>
-                {{form.name}}
-            </div>
-            <div class="form-group">
-                <label for="nume_oras">Oras</label>
-                {{form.city}}
-            </div>
+
+        <div class="form-group">
+            <label for="nume_resto">Nume</label>
+            {{form.name}}
+        </div>
+        <div class="form-group">
+            <label for="nume_oras">Oras</label>
+            {{form.city}}
+        </div>
     </div>
     <div>
-    <form method="post" action="/login/auth" class="form-signin">
-        </form>
-        </div>
+
+    </div>
     <div class="well">
         <h2>Date Meniuri</h2>
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Meniuri
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                {% for menu in menus %}
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{menu.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
         <ul class="list-group">
             <li class="list-group-item">
                 <label for="menu_name">Nume Meniu</label>
-                <input id = "menu_name" type="text" name="name_menu" maxlength="200">
+                <input id="menu_name" type="text" name="name_menu" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_description">Descriere Meniu</label>
-                <input id = "menu_description" type="text" name="description" maxlength="200" >
+                <input id="menu_description" type="text" name="description" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_date">Data Meniu</label>
-                <input id = "menu_date" type="text" name="data" maxlength="200" >
+                <input id="menu_date" type="text" name="data" maxlength="200">
             </li>
             <li class="list-group-item">
                 <label for="menu_price">Pret Meniu</label>
-                <input id = "menu_price" type="text" name="pret" maxlength="200" >
+                <input id="menu_price" type="text" name="pret" maxlength="200">
             </li>
         </ul>
     </div>
-     {% csrf_token %}
+    {% csrf_token %}
     <input type="submit" value="Submit">
 </form>
 {% endblock content %}
