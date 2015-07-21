@@ -38,36 +38,24 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" data-pk="{{menu.pk}}">{{menu.name}}</a></li>
                 {% endfor %}
             </ul>
-
-
         </div>
         <br>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <label for="menu_name">Nume Meniu</label>
-                <input class="form-control" id="menu_name" type="text" name="name_menu" maxlength="200">
-            </li>
-            <li class="list-group-item">
-                <label for="menu_description">Descriere Meniu</label>
-                <input class="form-control" id="menu_description" type="text" name="description" maxlength="200">
-            </li>
-            <li class="list-group-item">
-                <label for="menu_date">Data Meniu</label>
-                <input id="menu_date" class="form-control" type="text" name="data" maxlength="200">
-            </li>
-            <li class="list-group-item">
-                <label for="menu_price">Pret Meniu</label>
-                <input id="menu_price" class="form-control" type="text" name="pret" maxlength="200">
-            </li>
-            <input type="hidden" id="selected_menu" name="selected_menu" value=""/>
-        </ul>
-        <form enctype="multipart/form-data" method="post" action="/upload">
-            {% csrf_token %}
-            <table>
-                {{form_gallery.as_table}}
-            </table>
-            <input type="submit" value="Submit" id="Save"/>
-        </form>
+        <div class="form-group">
+            <label for="nume_meniu">Nume Meniu</label>
+            {{menu_form.name}}
+        </div>
+        <div class="form-group">
+            <label for="descriere_meniu">Descriere Meniu</label>
+            {{menu_form.description}}
+        </div>
+        <div class="form-group">
+            <label for="data_meniu">Data Meniu</label>
+            {{menu_form.date}}
+        </div>
+        <div class="form-group">
+            <label for="pret_meniu">Pret Meniu</label>
+            {{menu_form.price}}
+        </div>
     </div>
     {% csrf_token %}
     <input type="submit" value="Submit">

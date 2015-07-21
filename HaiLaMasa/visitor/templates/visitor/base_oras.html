@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
-{% load static from staticfiles %}
+{% load staticfiles %}
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'custom/css/base_oras.css' %}"/>
      <link href="http://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet" type="text/css">
 
 {% endblock head %}
-
 {% block content %}
+
      <div class = "row">
      {% for menu in menus %}
 
@@ -34,3 +35,4 @@
         {% endfor %}
             </div>
 {% endblock content %}
+
