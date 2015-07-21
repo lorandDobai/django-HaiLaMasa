@@ -20,12 +20,13 @@ class RestaurantEditForm(forms.ModelForm):
 class MenuEditForm(forms.ModelForm):
     class Meta:
         model = Menu
-        fields = ("description", "name", "date", "price")
+        fields = ("description", "menu_name", "date", "price", "restaurant")
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'menu_name'}),
+            'menu_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'menu_name'}),
             'description': forms.TextInput(attrs={'class': 'form-control', 'id': 'menu_description'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'id': 'menu_date'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control', 'id': 'menu_price'})
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'id': 'menu_price'}),
+            'restaurant': forms.NumberInput(attrs={'type': 'hidden', 'class': 'form-control'})
         }
 
 

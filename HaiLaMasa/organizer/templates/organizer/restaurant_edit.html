@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="nume_meniu">Nume Meniu</label>
-            {{menu_form.name}}
+            {{menu_form.menu_name}}
         </div>
         <div class="form-group">
             <label for="descriere_meniu">Descriere Meniu</label>
@@ -56,7 +56,9 @@
             <label for="pret_meniu">Pret Meniu</label>
             {{menu_form.price}}
         </div>
-
+        <div class="form-group">
+            {{menu_form.restaurant}}
+        </div>
     </div>
     {% csrf_token %}
     <div class="well">
