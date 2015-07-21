@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
 from django.template.context_processors import csrf
-from visitor.models import Restaurant, Menu
+from visitor.models import Restaurant, Menu, Gallery
 from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm, GalleryForm
 
 
@@ -36,12 +36,9 @@ def resto_edit(request, pk=None):
 
     form = RestaurantEditForm(None,instance = instance)
 
-
-    form_gallery = GalleryForm()
-
     context = Context({"resto":instance, "form":form, \
                        "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance)), \
-                       "form_gallery":form_gallery })
+                       "gallery": Gallery.objects.filter(restaurant=instance)})
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
 
