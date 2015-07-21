@@ -36,14 +36,8 @@ def resto_edit(request, pk=None):
 
     form = RestaurantEditForm(None,instance = instance)
 
-    if request.method == 'POST':
-        form_gallery = GalleryForm(request.POST, request.FILES)
-        if form_gallery.is_valid():
-            # file is saved
-            form_gallery.save()
-            return HttpResponseRedirect('')
-    else:
-        form_gallery = GalleryForm()
+
+    form_gallery = GalleryForm()
 
     context = Context({"resto":instance, "form":form, \
                        "menus":({"name":m.name,"pk":m.pk} for m in Menu.objects.filter(restaurant=instance)), \
@@ -53,6 +47,11 @@ def resto_edit(request, pk=None):
 
 @login_required
 def resto_validate(request):
+    if request.method == 'POST':
+        form_gallery = GalleryForm(request.POST, request.FILES)
+        if form_gallery.is_valid():
+            form_gallery.save()
+
     return HttpResponse(request.POST["name"]+" validam luni aci")
 
 @login_required
