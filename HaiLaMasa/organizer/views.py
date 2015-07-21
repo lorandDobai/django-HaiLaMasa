@@ -45,7 +45,6 @@ def resto_edit(request, pk=None):
 
 @login_required
 def resto_validate(request):
-<<<<<<< HEAD
     if request.method == 'POST':
         form_gallery = GalleryForm(request.POST, request.FILES)
         if form_gallery.is_valid():
@@ -56,10 +55,6 @@ def resto_validate(request):
         MenuEditForm.save()
 
     return HttpResponse(request.POST["name"] + " validam luni aci")
-=======
-
-    data = request.POST
->>>>>>> cf3d25f10cd12485ccb2855dc5a77a36001c226d
 
 
 @login_required
