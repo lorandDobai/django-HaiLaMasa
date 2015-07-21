@@ -44,10 +44,8 @@ def resto_edit(request, pk=None):
 
 @login_required
 def resto_validate(request):
-    if request.method == 'POST':
-        form_gallery = GalleryForm(request.POST, request.FILES)
-        if form_gallery.is_valid():
-            form_gallery.save()
+
+    data = request.POST
 
     return HttpResponse(request.POST["name"]+" validam luni aci")
 
@@ -73,3 +71,17 @@ def view_gallery(request):
     c = {'form_gallery': form_gallery}
     c.update(csrf(request))
     return render(request, 'upload.html', {'form_gallery': form_gallery}, c)
+
+@login_required
+def upload_img(request,pk=None):
+    data = request.FILES
+    image = Gallery(restaurant = Restaurant.objects.get(id=pk))
+    img_name = data['file'].name
+    image.picture.save(img_name, data['file'], True)
+    return HttpResponse("OK")
+
+@login_required
+def delete_img(request,pk=None):
+    data = request.POST
+    Gallery.objects.get(id=data['pk']).delete()
+    return HttpResponse("OK")
