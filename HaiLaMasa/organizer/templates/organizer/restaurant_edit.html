@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+
 {% block head %}
-
-
+    <link rel="stylesheet" href="{% static 'custom/css/restaurant_edit.css' %}">
 {% endblock head %}
 
-
 {% block content %}
-<form action="validate" method="post" role="form">
+<form enctype="multipart/form-data" action="validate" method="post" role="form">
 
     <h2>{{resto.name}} - {{resto.city}}</h2>
 
@@ -40,6 +39,7 @@
             </ul>
         </div>
         <br>
+
         <div class="form-group">
             <label for="nume_meniu">Nume Meniu</label>
             {{menu_form.name}}
@@ -56,15 +56,33 @@
             <label for="pret_meniu">Pret Meniu</label>
             {{menu_form.price}}
         </div>
+
     </div>
     {% csrf_token %}
+    <div class="well">
+          <h2>Galerie Restaurant</h2>
+          <ul class="images">
+              {% for image in gallery %}
+
+                    <li>
+
+                        <img src = "/{{ image.picture }}" width ="250" height="200"/>
+                        <span class="glyphicon glyphicon-remove xremove" data-pk="{{ image.pk }}" aria-hidden="true"></span>
+                    </li>
+
+              {% endfor %}
+          </ul>
+        <br/>
+          <input id="picture" name="picture" type="file"/>
+
+    </div>
     <input type="submit" value="Submit">
 </form>
 {% endblock content %}
 
 {% block javascript %}
-{{ block.super }}
-<script type="text/javascript" src="{% static 'custom/js/events.js' %}"></script>
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'custom/js/events.js' %}"></script>
 {% endblock javascript %}
 
 
