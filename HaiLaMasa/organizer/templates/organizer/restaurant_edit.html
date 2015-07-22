@@ -57,7 +57,7 @@
             {{menu_form.price}}
         </div>
         <div class="form-group">
-            {{menu_form.restaurant}}
+            <input class="form-control" id="id_restaurant" name="restaurant" type="hidden" value ="{{resto.id}}">
         </div>
     </div>
     {% csrf_token %}
