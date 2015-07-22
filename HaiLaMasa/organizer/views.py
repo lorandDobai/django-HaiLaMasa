@@ -37,7 +37,7 @@ def resto_edit(request, pk=None):
     form = RestaurantEditForm(None, instance=instance)
     menu_form = MenuEditForm()
     context = Context({"resto": instance, "form": form, "menu_form": menu_form, \
-                       "menus": ({"name": m.name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
+                       "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
                        "gallery": Gallery.objects.filter(restaurant=instance)})
     context.update(csrf(request))
     return render(request, 'organizer/restaurant_edit.html', context)
@@ -46,22 +46,23 @@ def resto_edit(request, pk=None):
 @login_required
 def resto_validate(request):
     if request.method == 'POST':
-        rest_edit_form = RestaurantEditForm(request.POST)
-        if rest_edit_form.is_valid():
-            rest_edit_form.save()
-        menu_edit_form = MenuEditForm(request.POST)
-        if menu_edit_form.is_valid():
-            menu_edit_form.save()
-    return HttpResponseRedirect(reverse_lazy('resto-edit'))
+
+        restaurant_form = RestaurantEditForm(request.POST)
+        menu_form = MenuEditForm(request.POST)
+        if restaurant_form.is_valid():
+            restaurant_form.save()
+        if menu_form.is_valid():
+            menu_form.save()
+    return HttpResponseRedirect(reverse_lazy('resto-list'))
+
 
 
 @login_required
 def menu_data(request):
     pk_menu = request.GET.get("pk_menu", -1)
     menu = Menu.objects.get(pk=pk_menu)
-    result = {"name": menu.name, "description": menu.description, "date": str(menu.date), "price": str(menu.price)}
+    result = {"name": menu.menu_name, "description": menu.description, "date": str(menu.date), "price": str(menu.price)}
     data = json.dumps(result)
-
     return HttpResponse(data)
 
 
