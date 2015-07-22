@@ -46,15 +46,13 @@ def resto_edit(request, pk=None):
 @login_required
 def resto_validate(request):
     if request.method == 'POST':
-        form_gallery = GalleryForm(request.POST, request.FILES)
-        if form_gallery.is_valid():
-            form_gallery.save()
-    if RestaurantEditForm.is_valid():
-        RestaurantEditForm.save()
-    if MenuEditForm.is_valid():
-        MenuEditForm.save()
-
-    return HttpResponse(request.POST["name"] + " validam luni aci")
+        rest_edit_form = RestaurantEditForm(request.POST)
+        if rest_edit_form.is_valid():
+            rest_edit_form.save()
+        menu_edit_form = MenuEditForm(request.POST)
+        if menu_edit_form.is_valid():
+            menu_edit_form.save()
+    return HttpResponseRedirect(reverse_lazy('resto-edit'))
 
 
 @login_required
