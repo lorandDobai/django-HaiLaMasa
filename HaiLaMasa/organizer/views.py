@@ -40,15 +40,12 @@ def resto_edit(request, pk=None):
     form = RestaurantEditForm(None, instance=instance)
     menu_form = MenuEditForm()
     menu_form.restaurant = instance
-    #context = Context({"resto": instance, "form": form, "menu_form": menu_form, \
-                 #      "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
-                  #     "gallery": Gallery.objects.filter(restaurant=instance)})
-    #context.update(csrf(request))
+
     context_dict = {"resto": instance, "form": form, "menu_form": menu_form, \
                        "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
                        "gallery": Gallery.objects.filter(restaurant=instance)}
     context_dict.update(csrf(request))
-    #return render(request, 'organizer/restaurant_edit.html', context)
+
     return render_to_response('organizer/restaurant_edit.html', context_dict, context_instance=RequestContext(request))
 
 
@@ -60,7 +57,7 @@ def resto_validate(request):
 
         if restaurant_form.is_valid():
             restaurant_form.save()
-        menu = Menu.objects.get(id=request.POST['menu'])
+        menu = Menu.objects.get(id=request.POST['menu']) if request.POST['menu'] else None
 
         menu_form = MenuEditForm(request.POST,instance = menu)
         if menu_form.is_valid():
