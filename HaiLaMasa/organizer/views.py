@@ -36,6 +36,7 @@ def resto_edit(request, pk=None):
 
     form = RestaurantEditForm(None, instance=instance)
     menu_form = MenuEditForm()
+    menu_form.restaurant = instance
     context = Context({"resto": instance, "form": form, "menu_form": menu_form, \
                        "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
                        "gallery": Gallery.objects.filter(restaurant=instance)})
@@ -46,13 +47,18 @@ def resto_edit(request, pk=None):
 @login_required
 def resto_validate(request):
     if request.method == 'POST':
+        restaurant = Restaurant.objects.get(id=request.POST['restaurant'])
+        restaurant_form = RestaurantEditForm(request.POST,instance = restaurant)
 
-        restaurant_form = RestaurantEditForm(request.POST)
-        menu_form = MenuEditForm(request.POST)
         if restaurant_form.is_valid():
             restaurant_form.save()
+        menu = Menu.objects.get(id=request.POST['menu'])
+
+        menu_form = MenuEditForm(request.POST,instance = menu)
         if menu_form.is_valid():
             menu_form.save()
+
+
     return HttpResponseRedirect(reverse_lazy('resto-list'))
 
 
@@ -61,7 +67,7 @@ def resto_validate(request):
 def menu_data(request):
     pk_menu = request.GET.get("pk_menu", -1)
     menu = Menu.objects.get(pk=pk_menu)
-    result = {"name": menu.menu_name, "description": menu.description, "date": str(menu.date), "price": str(menu.price)}
+    result = {"pk":pk_menu,"name": menu.menu_name, "description": menu.description, "date": str(menu.date), "price": str(menu.price)}
     data = json.dumps(result)
     return HttpResponse(data)
 
@@ -91,7 +97,8 @@ def upload_img(request,pk=None):
     image = Gallery(restaurant = Restaurant.objects.get(id=pk))
     img_name = data['file'].name
     image.picture.save(img_name, data['file'], True)
-    return HttpResponse("OK")
+    result = {'path':image.picture.url,'pk':image.pk}
+    return HttpResponse(json.dumps(result))
 
 @login_required
 def delete_img(request,pk=None):
