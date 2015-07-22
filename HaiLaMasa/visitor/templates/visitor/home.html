@@ -8,19 +8,16 @@
 {% endblock head %}
 
 {% block content %}
-
-
         <div id="googleMap"></div>
-
-
 {% endblock content %}
 
 {% block footer %}
-{% if user.is_authenticated == False %}
+
+        {% if user.is_authenticated == False %}
 <div class="well">
     <a href="http://localhost:8000/login">
         Log in as restaurant manager
     </a>
 </div>
 {% endif %}
-{% endblock footer %}
+{% endblock %}

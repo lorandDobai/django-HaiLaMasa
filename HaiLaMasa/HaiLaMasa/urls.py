@@ -30,9 +30,6 @@ urlpatterns = [
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?$', organizer_views.resto_edit, name='resto-edit'),
     url(r'^dashboard/restaurant/\d+/menu/$', organizer_views.menu_data, name='menu-data'),
     url(r'^dashboard/restaurant/validate$',organizer_views.resto_validate,name='resto-valid'),
-    url(r'^oras/(?P<city>[a-zA-Z]+)?',visitor_views.city_view),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/upload$', organizer_views.upload_img, name='upload-img'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/delete$', organizer_views.delete_img, name='delete-img'),
-
-
 ]
