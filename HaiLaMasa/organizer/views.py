@@ -2,9 +2,9 @@ import json
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import Context
+from django.template import Context, RequestContext
 from django.template.context_processors import csrf
 from visitor.models import Restaurant, Menu, Gallery
 from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm, GalleryForm
@@ -26,8 +26,11 @@ def login_auth(request):
 @login_required
 def resto_selection(request):
     my_restaurants = Restaurant.objects.filter(user=request.user)
-    context = Context({"restos": list(my_restaurants)})
-    return render(request, "organizer/dashboard_base.html", context)
+    context_dict = {"restos": list(my_restaurants)}
+    context_dict.update(csrf(request))
+    #context = Context({"restos": list(my_restaurants)})
+    #return render(request, "organizer/dashboard_base.html", context)
+    return render_to_response('organizer/dashboard_base.html', context_dict, context_instance=RequestContext(request))
 
 
 @login_required
@@ -37,11 +40,16 @@ def resto_edit(request, pk=None):
     form = RestaurantEditForm(None, instance=instance)
     menu_form = MenuEditForm()
     menu_form.restaurant = instance
-    context = Context({"resto": instance, "form": form, "menu_form": menu_form, \
+    #context = Context({"resto": instance, "form": form, "menu_form": menu_form, \
+                 #      "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
+                  #     "gallery": Gallery.objects.filter(restaurant=instance)})
+    #context.update(csrf(request))
+    context_dict = {"resto": instance, "form": form, "menu_form": menu_form, \
                        "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)), \
-                       "gallery": Gallery.objects.filter(restaurant=instance)})
-    context.update(csrf(request))
-    return render(request, 'organizer/restaurant_edit.html', context)
+                       "gallery": Gallery.objects.filter(restaurant=instance)}
+    context_dict.update(csrf(request))
+    #return render(request, 'organizer/restaurant_edit.html', context)
+    return render_to_response('organizer/restaurant_edit.html', context_dict, context_instance=RequestContext(request))
 
 
 @login_required
