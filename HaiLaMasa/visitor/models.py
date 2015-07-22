@@ -23,6 +23,8 @@ class Contact(models.Model):
     mail = models.CharField(max_length=200,blank=True)
     website = models.CharField(max_length=200,blank=True)
     restaurant = models.ForeignKey(Restaurant)
+    def __str__(self):
+        return self.restaurant.name
 
 class Menu(models.Model):
     menu_name = models.CharField(max_length=200)

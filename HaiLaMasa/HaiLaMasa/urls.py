@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^dashboard/restaurant/validate$',organizer_views.resto_validate,name='resto-valid'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/upload$', organizer_views.upload_img, name='upload-img'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/delete$', organizer_views.delete_img, name='delete-img'),
+    url(r'^restaurant/(?P<pk>[0-9]+)?$',visitor_views.restaurant_view)
 ]
