@@ -2,6 +2,6 @@
 {% load staticfiles %}
 {% block content %}
 {% for restaurant in restaurants %}
-<h4><a href="http://localhost:8000/restaurant/{{restaurant.id}}">{{restaurant}}</a></h4>
+<h4><a href="/restaurant/{{restaurant.id}}">{{restaurant}}</a></h4>
 {% endfor %}
 {% endblock content %}

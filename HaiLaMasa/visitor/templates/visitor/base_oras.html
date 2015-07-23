@@ -9,7 +9,7 @@
 {% endblock head %}
 
 {% block content %}
-<a href="http://localhost:8000/restaurante/{{city}}" class="btn btn-default navbar-btn">Restaurante</a>
+<a href="/restaurante/{{city}}" class="btn btn-default navbar-btn">Restaurante</a>
 <br>
 <div class="row">
     {% for menu in menus %}
@@ -25,7 +25,7 @@
                 </h3><br/>
 
                 <p>{{menu.description}}</p>
-                <a href="http://localhost:8000/restaurant/{{menu.restaurant.id}}"><p>Info restaurant</p></a>
+                <a href="/restaurant/{{menu.restaurant.id}}"><p>Info restaurant</p></a>
             </div>
         </div>
     </div>
