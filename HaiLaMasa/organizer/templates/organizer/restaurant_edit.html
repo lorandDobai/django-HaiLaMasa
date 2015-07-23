@@ -23,9 +23,36 @@
             {{form.city}}
         </div>
     </div>
-    <div>
+    <div class="well">
+        <h2>Date Contact Restaurant</h2>
+
+        <div class="form-group">
+            <label for="id_phone">Telefon</label>
+            {{contact_form.phone}}
+        </div>
+        <div class="form-group">
+            <label for="id_mail">Mail</label>
+            {{contact_form.mail}}
+        </div>
+         <div class="form-group">
+            <label for="id_website">Website</label>
+            {{contact_form.website}}
+        </div>
 
     </div>
+    <div class="well">
+        <h2>Date Adresa Restaurant</h2>
+
+        <div class="form-group">
+            <label for="id_address">Adresa</label>
+            {{address_form.address}}
+        </div>
+
+
+    </div>
+
+
+
     <div class="well">
         <h2>Date Meniuri</h2>
 
@@ -38,6 +65,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <br>
 
         <div class="form-group">
@@ -56,6 +84,7 @@
             <label for="pret_meniu">Pret Meniu</label>
             {{menu_form.price}}
         </div>
+         <button class="btn btn-default"  type="button" id="delete_menu">Sterge</button>
         <div class="form-group">
             <input class="form-control" id="id_menu" name = "menu" type ="hidden" value="">
             <input class="form-control" id="id_restaurant" name="restaurant" type="hidden" value ="{{resto.id}}">
@@ -66,9 +95,7 @@
           <h2>Galerie Restaurant</h2>
           <ul class="images">
               {% for image in gallery %}
-
                     <li>
-
                         <img src = "/{{ image.picture }}" width ="250" height="200"/>
                         <span class="glyphicon glyphicon-remove xremove" data-pk="{{ image.pk }}" aria-hidden="true"></span>
                     </li>

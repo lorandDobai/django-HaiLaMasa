@@ -8,15 +8,18 @@
 {% endblock head %}
 
 {% block content %}
-     <div class = "row">
-    <ul>
-    {% for resto in restos %}
+<div class = "row">
+    <ul style="list-style-type:none">
+        <h2>
+            Restaurantele Mele
+        </h2>
+        {% for resto in restos %}
         <a href = "restaurant/{{resto.pk}}">
             <li>{{ resto.name }} - {{ resto.city }}</li>
         </a>
         {% empty %}
         <li>No Restaurants yet.</li>
-    {% endfor %}
-</ul>
-     </div>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}
