@@ -1,7 +1,45 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'custom/css/base_oras.css' %}"/>
+{% endblock head %}
+{% load app_filters %}
 {% block content %}
-{% for restaurant in restaurants %}
-<h4><a href="/restaurant/{{restaurant.id}}">{{restaurant}}</a></h4>
-{% endfor %}
+<div class="row">
+    {% for restaurant in restaurants %}
+    <div class="col-md-6 menu-well">
+        <div class="panel panel-warning menu">
+            <div class="panel-heading menu-head">
+                <h2 class="panel-title menu-title">{{restaurant.name}}</h2>
+            </div>
+            <div class="panel-body menu-body">
+                {% with restaurant|get_contact_of_restaurant as contact %}
+                <h3>{{ contact.phone }}
+                </h3><br/>
+                {{contact.mail}}
+                <br>
+                {{contact.website}}
+                <br>
+                {% endwith %}
+                {% with restaurant|get_address_of_restaurant as address %}
+                {{address.address}}
+                {% endwith %}
+                {% with restaurant|get_gallery_of_restaurant as gallery %}
+                <div class="row">
+                    {% for picture in gallery %}
+                    <div class="col-md-6 menu-well">
+                        {% if picture.picture != "" %}
+                        <img src="/{{picture.picture }}" class="img-circle" width="220" height="200"/>
+                        {%endif%}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <h1 class="menu-title">Nu exista niciun restaurant!</h1>
+    {% endfor %}
+</div>
 {% endblock content %}
