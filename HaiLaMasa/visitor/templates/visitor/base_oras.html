@@ -9,18 +9,16 @@
 {% endblock head %}
 
 {% block content %}
-
+<a href="http://localhost:8000/restaurante/{{city}}" class="btn btn-default navbar-btn">Restaurante</a>
+<br>
 <div class="row">
     {% for menu in menus %}
 
-    <div class="col-md-6 menu-well">
+    <div class="col-md-4 menu-well">
         <div class="panel panel-warning menu">
             <div class="panel-heading menu-head">
                 <h2 class="panel-title menu-title">{{menu.restaurant.name}}</h2>
             </div>
-            {% if menu.picture != "" %}
-            <img src="{% static menu.picture %}" style="float:right;" class="img-circle" width="220" height="200"/>
-            {%endif%}
             <div class="panel-body menu-body">
                 <h3>Oferta zilei:
                     {{ menu.menu_name }}
@@ -28,8 +26,6 @@
 
                 <p>{{menu.description}}</p>
                 <a href="http://localhost:8000/restaurant/{{menu.restaurant.id}}"><p>Info restaurant</p></a>
-
-
             </div>
         </div>
     </div>

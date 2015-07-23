@@ -1,7 +1,30 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'custom/css/base_oras.css' %}"/>
+{% endblock head %}
 {% block content %}
 <div class="well">
-    <h1>{{contact.phone}}</h1>
+    <h1>{{contact.restaurant.name}}</h1>
+
+    <h3>{{contact.phone}}</h3>
+
+    <h3>{{contact.mail}}</h3>
+
+    <h3>{{contact.website}}</h3>
+
+    <h3>{{address.address}}</h3>
+
+    <div class="well">
+        <div class="row">
+            {% for picture in gallery %}
+            <div class="col-md-4 menu-well">
+                {% if picture.picture != "" %}
+                <img src="/{{picture.picture }}" class="img-circle" width="220" height="200"/>
+                {%endif%}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock content %}
