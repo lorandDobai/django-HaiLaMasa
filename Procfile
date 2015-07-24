@@ -1,1 +1,1 @@
-web: gunicorn HaiLaMasa.wsgi
+web: gunicorn HaiLaMasa.wsgi.application
