@@ -105,7 +105,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 LOGIN_URL = reverse_lazy('login')
-STATIC_URL = '/static2/'
+STATIC_URL = '/static/'
 STATIC_ROOT = 'static2'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
