@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', visitor_views.hello,name = 'home'),
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^login/auth$',organizer_views.login_auth),
     url(r'^oras/(?P<city>[a-zA-Z]+)?$',visitor_views.city_view),
     url(r'^logout$', organizer_views.logout_view),

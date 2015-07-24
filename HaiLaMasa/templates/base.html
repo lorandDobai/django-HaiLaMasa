@@ -19,15 +19,15 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><p class="navbar-text">{{request.user.username}}</p></li>
                     <li role="presentation">
-                        <a href="http://localhost:8000/dashboard" class="btn btn-default navbar-btn">Dashboard</a>
+                        <a href="{% url 'resto-list' %}" class="btn btn-default navbar-btn">Dashboard</a>
                     </li>
                     <li role="presentation">
-                        <a href="http://localhost:8000/logout" class="btn btn-default navbar-btn">Log Out</a>
+                        <a href="{% url 'logout' %}" class="btn btn-default navbar-btn">Log Out</a>
                     </li>
                 </ul>
                 {% endif %}
             </nav>
-            <a href="http://localhost:8000">
+            <a href="{% url 'home' %}">
                 <h1>Hai La Masa!
                     <small>Nyi foame...</small>
                 </h1>

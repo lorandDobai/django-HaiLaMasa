@@ -20,7 +20,7 @@ marker.setMap(map);
 
 google.maps.event.addListener(marker,'click',function() {
   //alert(marker.title);
-  var str1 = "http://localhost:8000/oras/";
+  var str1 = window.location.href+"oras/";
   var str2 = marker.title;
   var res = str1.concat(str2);
   window.location.replace(res);
