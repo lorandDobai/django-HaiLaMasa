@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.template import Context, Template, RequestContext
 from django.template.context_processors import csrf
+from HaiLaMasa.settings import STATIC_ROOT
 from .models import Restaurant, Menu, Contact, Address, Gallery
 import datetime
 from django.http import HttpResponse
@@ -8,6 +9,7 @@ from datetime import date
 # Create your views here.
 
 def hello(request):
+    print(STATIC_ROOT)
     return render(request, 'visitor/home.html')
 
 def city_view(request,city=""):
