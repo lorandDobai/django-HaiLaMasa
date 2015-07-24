@@ -1,1 +1,1 @@
-web: gunicorn HaiLaMasa/HaiLaMasa.wsgi 
+web: cd HaiLaMasa && gunicorn HaiLaMasa.wsgi 
