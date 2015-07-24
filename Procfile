@@ -1,0 +1,1 @@
+web: gunicorn HaiLaMasa/HaiLaMasa.wsgi 
