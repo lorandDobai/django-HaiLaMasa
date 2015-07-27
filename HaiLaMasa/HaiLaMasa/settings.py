@@ -86,6 +86,18 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'database.db'),
     }
 }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hailamasa',
+        'USER': 'gigiucu',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+"""
 
 
 # Internationalization
