@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+from django.core.urlresolvers import reverse_lazy
 from visitor import views as visitor_views
 from organizer import views as organizer_views
 from django.contrib import admin
@@ -26,7 +27,7 @@ urlpatterns = [
     url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^login/auth$',organizer_views.login_auth),
     url(r'^oras/(?P<city>[a-zA-Z]+)?$',visitor_views.city_view),
-    url(r'^logout$', organizer_views.logout_view,{'next_page': '/'}),
+    url(r'^logout$', organizer_views.logout_view,{'next_page': reverse_lazy('home')}),
     url(r'^dashboard/$',organizer_views.resto_selection, name='resto-list'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?$', organizer_views.resto_edit, name='resto-edit'),
     url(r'^dashboard/restaurant/\d+/menu/$', organizer_views.menu_data, name='menu-data'),
