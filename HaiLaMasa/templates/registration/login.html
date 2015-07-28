@@ -2,19 +2,29 @@
 {% load staticfiles %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'custom/css/login.css' %}">
+<script>
+
+</script>
 {% endblock head %}
 {% block content %}
 <div class="container">
     <form method="post" action="/login/auth" class="form-signin">
         {% csrf_token %}
         <h2 class="form-signin-heading">Please sign in</h2>
-        <ul class="contactList">
+
 
             {{ form.username }}
             {{ form.password }}
-        </ul>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <input type="hidden" name="next" value="{{ next }}"/>
     </form>
 </div>
 {% endblock content %}
+{% block javascript %}
+{{ block.super }}
+    <script>
+    $("#id_username").addClass("form-control");
+    $("#id_password").addClass("form-control");
+    </script>
+{% endblock javascript %}
