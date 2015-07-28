@@ -6,7 +6,10 @@ function initialize()
 var mapProp = {
   center:new google.maps.LatLng(45.8369377,24.9987621),
   zoom:7,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  draggable:false,
+  zoomControl:false,
+  scrollwheel: false
   };
 
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
