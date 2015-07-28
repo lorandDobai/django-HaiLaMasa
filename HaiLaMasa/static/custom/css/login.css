@@ -30,6 +30,10 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
+.btn{
+  max-width:330px;
+
+}
 #id_password {
   width:220px;
   margin: 0 auto;
