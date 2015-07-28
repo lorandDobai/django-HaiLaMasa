@@ -7,7 +7,7 @@ var mapProp = {
   center:new google.maps.LatLng(45.8369377,24.9987621),
   zoom:7,
   mapTypeId: google.maps.MapTypeId.ROADMAP,
-  draggable:false,
+  //draggable:false,
   zoomControl:false,
   scrollwheel: false
   };
