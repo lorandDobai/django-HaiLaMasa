@@ -6,6 +6,8 @@ function initialize()
 var mapProp = {
   center:new google.maps.LatLng(45.8369377,24.9987621),
   zoom:7,
+  maxZoom:8,
+  minZoom:6,
   mapTypeId: google.maps.MapTypeId.ROADMAP,
   //draggable:false,
   zoomControl:false,
