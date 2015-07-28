@@ -9,7 +9,7 @@ var mapProp = {
   maxZoom:8,
   minZoom:6,
   mapTypeId: google.maps.MapTypeId.ROADMAP,
-  //draggable:false,
+  mapTypeControl:false,
   zoomControl:false,
   scrollwheel: false
   };
