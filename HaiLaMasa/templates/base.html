@@ -15,6 +15,11 @@
 <div class="container">
     <div class="well">
         <div class="header clearfix">
+             <a href="{% url 'home' %}">
+                <h1>Hai La Masa!
+                    <small>Nyi foame...</small>
+                </h1>
+            </a>
             <nav>
                 {% if user.is_authenticated %}
                 <ul class="nav nav-pills pull-right">
@@ -28,11 +33,7 @@
                 </ul>
                 {% endif %}
             </nav>
-            <a href="{% url 'home' %}">
-                <h1>Hai La Masa!
-                    <small>Nyi foame...</small>
-                </h1>
-            </a>
+
         </div>
     </div>
     <div class="well content">
