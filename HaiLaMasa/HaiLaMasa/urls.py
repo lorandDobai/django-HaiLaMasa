@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^login/auth$',organizer_views.login_auth),
     url(r'^oras/(?P<city>[a-zA-Z]+)?$',visitor_views.city_view),
-    url(r'^logout$', organizer_views.logout_view),
+    url(r'^logout$', organizer_views.logout_view,{'next_page': '/'}),
     url(r'^dashboard/$',organizer_views.resto_selection, name='resto-list'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?$', organizer_views.resto_edit, name='resto-edit'),
     url(r'^dashboard/restaurant/\d+/menu/$', organizer_views.menu_data, name='menu-data'),
