@@ -14,27 +14,28 @@
 <body>
 <div class="container">
     <div class="well">
-        <div class="header clearfix">
-             <a href="{% url 'home' %}">
-                <h1>Hai La Masa!
-                    <small>Nyi foame...</small>
-                </h1>
-            </a>
-            <nav>
-                {% if user.is_authenticated %}
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation"><p class="navbar-text">{{request.user.username}}</p></li>
-                    <li role="presentation">
-                        <a href="{% url 'resto-list' %}" class="btn btn-default navbar-btn">Dashboard</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="{% url 'logout' %}" class="btn btn-default navbar-btn">Log Out</a>
-                    </li>
-                </ul>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="{% url 'home' %}"><h1>Hai La Masa</h1></a>
+                </div>
+                {% if user_is.authenticated %}
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">{{request.user.username}} <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'resto-list' %}">Dashboard</a></li>
+                                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                 {% endif %}
-            </nav>
-
-        </div>
+            </div>
+        </nav>
     </div>
     <div class="well content">
         {% block content%}{% endblock content %}
