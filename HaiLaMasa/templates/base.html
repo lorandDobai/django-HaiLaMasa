@@ -13,30 +13,31 @@
 </head>
 <body>
 <div class="container">
-    <div class="well">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="{% url 'home' %}"><h1>Hai La Masa</h1></a>
+            <div class="row">
+                <div class="col-xs-6">
+                 <a href="{% url 'home' %}" ><h1>Hai La Masa</h1></a>
                 </div>
-                {% if user.is_authenticated %}
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">{{request.user.username}} <span
-                                    class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'resto-list' %}">Dashboard</a></li>
-                                <li><a href="{% url 'logout' %}">Log Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <div class="col-xs-6 pull-right menu">
+                 {% if user.is_authenticated  %}
+                <ul class="list-group pull-right">
+                    <li class="list-group-item list-group-item-info">
+                                <div class="dropdown usermenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">{{request.user.username}} <span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'resto-list' %}">Dashboard</a></li>
+                                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                                    </ul>
+                                </div>
+                    </li>
+                </ul>
                 {% endif %}
+                </div>
+
+
             </div>
-        </nav>
-    </div>
+
     <div class="well content">
         {% block content%}{% endblock content %}
     </div>
