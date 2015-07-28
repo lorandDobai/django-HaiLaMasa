@@ -19,21 +19,20 @@ from visitor import views as visitor_views
 from organizer import views as organizer_views
 from django.contrib import admin
 
-
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', visitor_views.hello,name = 'home'),
+    url(r'^$', visitor_views.hello, name='home'),
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout$', 'django.contrib.auth.views.logout',{'next_page': reverse_lazy('home')},name='logout'),
-    url(r'^login/auth$',organizer_views.login_auth),
-    url(r'^oras/(?P<city>[a-zA-Z]+)?$',visitor_views.city_view),
-    url(r'^signout$', organizer_views.logout_view,name='signout'),
-    url(r'^dashboard/$',organizer_views.resto_selection, name='resto-list'),
+    url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': reverse_lazy('home')}, name='logout'),
+    url(r'^login/auth$', organizer_views.login_auth),
+    url(r'^oras/(?P<city>[a-zA-Z]+)?$', visitor_views.city_view),
+    url(r'^signout$', organizer_views.logout_view, name='signout'),
+    url(r'^dashboard/$', organizer_views.resto_selection, name='resto-list'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?$', organizer_views.resto_edit, name='resto-edit'),
     url(r'^dashboard/restaurant/\d+/menu/$', organizer_views.menu_data, name='menu-data'),
-    url(r'^dashboard/restaurant/validate$',organizer_views.resto_validate,name='resto-valid'),
+    url(r'^dashboard/restaurant/validate$', organizer_views.resto_validate, name='resto-valid'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/upload$', organizer_views.upload_img, name='upload-img'),
     url(r'^dashboard/restaurant/(?P<pk>[0-9]+)?/delete$', organizer_views.delete_img, name='delete-img'),
-    url(r'^restaurant/(?P<pk>[0-9]+)?$',visitor_views.restaurant_view, name='restaurant'),
-    url(r'^restaurante/(?P<city>[a-zA-Z]+)?$',visitor_views.restaurants_view)
+    url(r'^restaurant/(?P<pk>[0-9]+)?$', visitor_views.restaurant_view, name='restaurant'),
+    url(r'^restaurante/(?P<city>[a-zA-Z]+)?$', visitor_views.restaurants_view)
 ]

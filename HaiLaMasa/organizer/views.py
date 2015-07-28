@@ -6,8 +6,8 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, RequestContext
 from django.template.context_processors import csrf
-from visitor.models import Restaurant, Menu, Gallery,Contact, Address
-from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm, GalleryForm, ContactForm,AddressForm
+from visitor.models import Restaurant, Menu, Gallery, Contact, Address
+from organizer.forms import RestaurantEditForm, MenuEditForm, MenusForm, GalleryForm, ContactForm, AddressForm
 
 
 def login_auth(request):
@@ -34,7 +34,6 @@ def resto_selection(request):
 
 @login_required
 def resto_edit(request, pk=None):
-
     instance = get_object_or_404(Restaurant, id=pk)
 
     resto = instance
@@ -43,10 +42,10 @@ def resto_edit(request, pk=None):
     menu_form = MenuEditForm()
     menu_form.restaurant = instance
 
-    contact = Contact.objects.get(restaurant = resto)
-    contact_form = ContactForm(None, instance = contact)
+    contact = Contact.objects.get(restaurant=resto)
+    contact_form = ContactForm(None, instance=contact)
 
-    address_form = AddressForm(None, instance = Address.objects.get(restaurant=instance))
+    address_form = AddressForm(None, instance=Address.objects.get(restaurant=instance))
     context_dict = {"resto": instance, "form": form, "menu_form": menu_form,
                     "menus": ({"name": m.menu_name, "pk": m.pk} for m in Menu.objects.filter(restaurant=instance)),
                     "gallery": Gallery.objects.filter(restaurant=instance), "contact_form": contact_form,
@@ -62,32 +61,32 @@ def resto_validate(request):
     if request.method == 'POST':
 
         restaurant = Restaurant.objects.get(id=request.POST['restaurant'])
-        restaurant_form = RestaurantEditForm(request.POST, instance = restaurant)
+        restaurant_form = RestaurantEditForm(request.POST, instance=restaurant)
         if restaurant_form.is_valid():
             restaurant_form.save()
 
         menu = Menu.objects.get(id=request.POST['menu']) if request.POST['menu'] else None
-        menu_form = MenuEditForm(request.POST,instance = menu)
+        menu_form = MenuEditForm(request.POST, instance=menu)
         if menu_form.is_valid():
             menu_form.save()
 
-        contact_form = ContactForm(request.POST, instance = Contact.objects.get(restaurant=restaurant))
+        contact_form = ContactForm(request.POST, instance=Contact.objects.get(restaurant=restaurant))
         if contact_form.is_valid():
             contact_form.save()
 
-        address_form = AddressForm(request.POST, instance = Address.objects.get(restaurant=restaurant))
+        address_form = AddressForm(request.POST, instance=Address.objects.get(restaurant=restaurant))
         if address_form.is_valid():
             address_form.save()
 
     return HttpResponseRedirect(reverse_lazy('resto-list'))
 
 
-
 @login_required
 def menu_data(request):
     pk_menu = request.GET.get("pk_menu", -1)
     menu = Menu.objects.get(pk=pk_menu)
-    result = {"pk":pk_menu,"name": menu.menu_name, "description": menu.description, "date": str(menu.date), "price": str(menu.price)}
+    result = {"pk": pk_menu, "name": menu.menu_name, "description": menu.description, "date": str(menu.date),
+              "price": str(menu.price)}
     data = json.dumps(result)
     return HttpResponse(data)
 
@@ -106,23 +105,25 @@ def view_gallery(request):
     c.update(csrf(request))
     return render(request, 'upload.html', {'form_gallery': form_gallery}, c)
 
+
 @login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse_lazy('home'))
 
-@login_required
-def upload_img(request,pk=None):
-    data = request.FILES
-    image = Gallery(restaurant = Restaurant.objects.get(id=pk))
-    img_name = data['file'].name
-    image.picture.save(img_name, data['file'], True)
-    result = {'path': image.picture.url,'pk': image.pk}
-    return HttpResponse(json.dumps(result))
 
 @login_required
-def delete_img(request,pk=None):
+def upload_img(request, pk=None):
+    data = request.FILES
+    image = Gallery(restaurant=Restaurant.objects.get(id=pk))
+    img_name = data['file'].name
+    image.picture.save(img_name, data['file'], True)
+    result = {'path': image.picture.url, 'pk': image.pk}
+    return HttpResponse(json.dumps(result))
+
+
+@login_required
+def delete_img(request):
     data = request.POST
     Gallery.objects.get(id=data['pk']).delete()
     return HttpResponse("OK")
-

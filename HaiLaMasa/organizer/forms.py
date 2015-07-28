@@ -1,5 +1,5 @@
 from django import forms
-from visitor.models import Restaurant, Menu, Gallery, Contact,Address
+from visitor.models import Restaurant, Menu, Contact, Address
 
 
 class LoginForm(forms.Form):
@@ -16,6 +16,7 @@ class RestaurantEditForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
+
 
 class MenuEditForm(forms.ModelForm):
     class Meta:
@@ -36,6 +37,7 @@ class MenusForm(forms.Form):
         self.fields['my_choice_field'] = forms.ChoiceField(
             choices=Menu.objects.filter(restaurant=instance))
 
+
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
@@ -46,6 +48,7 @@ class ContactForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
@@ -53,5 +56,7 @@ class AddressForm(forms.ModelForm):
         widgets = {
             'address': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
 class GalleryForm(forms.Form):
     picture = forms.ImageField()
