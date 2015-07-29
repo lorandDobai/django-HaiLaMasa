@@ -10,7 +10,7 @@ body{
     background-attachment: fixed;
     background-position: center;
     background-size:cover;
-    background-size:100%;
+    background-size:100% auto;
 }
 h1{
     font-family: 'Dancing Script', cursive;
