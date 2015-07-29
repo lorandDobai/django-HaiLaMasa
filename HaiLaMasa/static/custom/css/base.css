@@ -4,10 +4,9 @@ body{
 
     left: 0px;
     top: 0px;
-    background-image: url("/static/custom/assets/back.jpg") no-repeat center center fixed;;
 
-
-    background-size:100% auto;
+    background: url("/static/custom/assets/back.jpg") no-repeat center fixed;
+    background-size: cover;
 }
 h1{
     font-family: 'Dancing Script', cursive;
